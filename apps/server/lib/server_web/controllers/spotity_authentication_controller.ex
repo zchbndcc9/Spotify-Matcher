@@ -1,0 +1,2 @@
+defmodule ServerWeb.SpotifyAuthController do
+end
