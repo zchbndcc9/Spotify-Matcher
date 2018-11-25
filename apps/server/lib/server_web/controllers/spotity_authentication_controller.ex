@@ -6,6 +6,8 @@ defmodule ServerWeb.SpotifyAuthController do
   end
 
   def authenticate(conn, params) do
-    Spotify.Authentication.authenticate(conn, params)
+    Spotify.Authentication.authenticate(conn, params) do
+      {:ok, conn} -> conn
+    end
   end
 end
