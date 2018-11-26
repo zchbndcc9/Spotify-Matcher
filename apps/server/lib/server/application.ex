@@ -6,12 +6,11 @@ defmodule Server.Application do
   def start(_type, _args) do
     import Supervisor.Spec
 
+
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the Ecto repository
-      supervisor(Server.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(ServerWeb.Endpoint, []),
+      supervisor(ServerWeb.Endpoint, [])
       # Start your own worker by calling: Server.Worker.start_link(arg1, arg2, arg3)
       # worker(Server.Worker, [arg1, arg2, arg3]),
     ]
