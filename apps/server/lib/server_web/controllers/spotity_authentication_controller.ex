@@ -1,13 +1,9 @@
 defmodule ServerWeb.SpotifyAuthController do
   use ServerWeb, :controller
 
-  def authorize(conn, _params) do
-    redirect conn, external: Spotify.Authorization.url
-  end
-
   def authenticate(conn, params) do
-    Spotify.Authentication.authenticate(conn, params) do
-      {:ok, conn} -> conn
+    case Spotify.Authentication.authenticate(conn, params) do
+      {:ok, conn} -> redirect conn, to: "/"
     end
   end
 end

@@ -17,10 +17,6 @@ defmodule ServerWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/authenticate", SpotifyAuthController, :authenticate
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ServerWeb do
-  #   pipe_through :api
-  # end
 end
