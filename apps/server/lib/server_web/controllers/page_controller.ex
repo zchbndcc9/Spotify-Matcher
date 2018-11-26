@@ -11,9 +11,10 @@ defmodule ServerWeb.PageController do
     determine_render(conn, conditions)
   end
 
-  def determine_render(conn, %{authenticated?: false}) do
-    conn
-    |> redirect(external: Spotify.Authorization.url)
+  def determine_render(conn, flags = %{authenticated?: false}) do
+    case Spotify.Authentication.refresh(conn) do
+      {:ok, conn} -> determine_render(conn, %{flags | authenticated?: true})
+    end
   end
 
   def determine_render(conn, %{tokens?: false}) do
@@ -22,7 +23,9 @@ defmodule ServerWeb.PageController do
   end
 
   def determine_render(conn, _conditions) do
-    conn
-    |> render("index.html", conn: conn)
+    artists = conn
+    |> Server.SpotifyAPI.get_artists
+
+    render conn, "index.html", artists: artists
   end
 end
