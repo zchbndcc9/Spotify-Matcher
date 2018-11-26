@@ -13,7 +13,7 @@ defmodule ServerWeb.PageController do
 
   def determine_render(conn, %{tokens?: false}) do
     conn
-    |> render("new_user.html")
+    |> render("new_user.html", conn: conn)
   end
 
   def determine_render(conn, %{authenticated?: false}) do
@@ -23,6 +23,6 @@ defmodule ServerWeb.PageController do
 
   def determine_render(conn, _conditions) do
     conn
-    |> render("index.html")
+    |> render("index.html", conn: conn)
   end
 end
