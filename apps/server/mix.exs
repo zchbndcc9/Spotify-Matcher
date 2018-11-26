@@ -18,7 +18,6 @@ defmodule Server.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      applications: [:poison, :spotify_ex],
       mod: {Server.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
