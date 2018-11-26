@@ -10,7 +10,7 @@ defmodule ServerWeb.PageController do
 
     determine_render(conn, conditions)
   end
-  
+
   def determine_render(conn, %{authenticated?: false}) do
     conn
     |> redirect(external: Spotify.Authorization.url)
@@ -20,7 +20,6 @@ defmodule ServerWeb.PageController do
     conn
     |> render("new_user.html", conn: conn)
   end
-
 
   def determine_render(conn, _conditions) do
     conn
