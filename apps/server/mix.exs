@@ -44,7 +44,8 @@ defmodule Server.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:spotify_ex, "~> 2.0.9"},
-      {:poison, ">= 1.5.0"}
+      {:poison, ">= 1.5.0"},
+      {:artist_manager, in_umbrella: true}
     ]
   end
 end
