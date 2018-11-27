@@ -4,6 +4,7 @@
 </div>
 
 <%= for artist <- @artists do %>
-  <p><%= artist.name %></p>
+  <div class="artist-card">
+    <div class="name" ><%= artist.name %></div>
+  </div>
 <% end %>
-</div>
