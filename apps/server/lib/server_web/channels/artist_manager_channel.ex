@@ -1,4 +1,4 @@
-defmodule ServerWeb.ArtistManagerChannel do
+defmodule ServerWeb.ArtistLibraryChannel do
   use Phoenix.Channel
 
   def join("app:artists", _message, socket) do
@@ -6,7 +6,7 @@ defmodule ServerWeb.ArtistManagerChannel do
   end
 
   def handle_in("add", artist, socket) do
-    ArtistManager.add(artist)
+    ArtistLibrary.add(artist)
     {:noreply, socket}
   end
 end

@@ -2,7 +2,7 @@ defmodule ServerWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "app:*", ServerWeb.ArtistManagerChannel
+  channel "app:*", ServerWeb.ArtistLibraryChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -1,13 +1,13 @@
-defmodule ArtistManager.Store do
+defmodule ArtistLibrary.Library do
   use GenServer
-  @me ArtistManager.Server
+  @me ArtistLibrary.Library.Server
 
   def start_link(stash) do
     GenServer.start_link(@me, stash, name: @me)
   end
 
   def init(_) do
-    {:ok, ArtistManager.Stash.get()}
+    {:ok, ArtistLibrary.Archive.get()}
   end
 
   @spec add(String) :: :ok

@@ -1,9 +1,9 @@
-defmodule ArtistManager.Server do
+defmodule ArtistLibrary.Library.Server do
   use GenServer
-  alias ArtistManager.Server.Impl
+  alias ArtistLibrary.Library.Impl
 
   def init(_) do
-    {:ok, ArtistManager.Stash.get()}
+    {:ok, ArtistLibrary.Archive.get()}
   end
 
   def handle_cast({:add, new_artist}, artists) do
@@ -36,6 +36,6 @@ defmodule ArtistManager.Server do
 
   def terminate(_reason, artists) do
     IO.puts("Whoops, the artist manager crashed")
-    ArtistManager.Stash.update(artists)
+    ArtistLibrary.Archive.update(artists)
   end
 end
