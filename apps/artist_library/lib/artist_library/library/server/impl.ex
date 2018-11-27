@@ -1,4 +1,4 @@
-defmodule ArtistManager.Server.Impl do
+defmodule ArtistLibrary.Library.Impl do
   @type artists :: %{String: list(String)}
 
   @spec add(String, artists()) :: artists()

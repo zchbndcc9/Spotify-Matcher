@@ -1,4 +1,4 @@
-# ArtistManager
+# ArtistLibrary
 
 **TODO: Add description**
 

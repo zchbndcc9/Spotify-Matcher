@@ -1,4 +1,4 @@
-defmodule ArtistManager.Stash do
+defmodule ArtistLibrary.Archive do
   use GenServer
 
   def start_link(state) do

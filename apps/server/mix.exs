@@ -45,7 +45,7 @@ defmodule Server.Mixfile do
       {:cowboy, "~> 1.0"},
       {:spotify_ex, "~> 2.0.9"},
       {:poison, ">= 1.5.0"},
-      {:artist_manager, in_umbrella: true}
+      {:artist_library, in_umbrella: true}
     ]
   end
 end
