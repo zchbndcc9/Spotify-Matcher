@@ -1,31 +1,33 @@
 defmodule ServerWeb.PageController do
   use ServerWeb, :controller
-  plug Server.SpotifyAPI.RaiseFlags
+
+  plug :authenticate
 
   def index(conn, _params) do
-    conditions = %{
-      tokens?: conn.assigns[:tokens_present?],
-      authenticated?: conn.assigns[:authenticated?]
-    }
+    artists = conn
+    |> Server.SpotifyAPI.get_artists()
 
-    determine_render(conn, conditions)
+    render(conn, "index.html", artists: artists)
   end
 
-  def determine_render(conn, flags = %{authenticated?: false}) do
-    case Spotify.Authentication.refresh(conn) do
-      {:ok, conn} -> determine_render(conn, %{flags | authenticated?: true})
+  defp authenticate(conn, _) do
+    case Spotify.Authentication.authenticated?(conn) do
+      {:ok, conn} ->
+        conn
+        |> halt()
+      _ ->
+        conn
+        |> refresh_tokens()
     end
   end
 
-  def determine_render(conn, %{tokens?: false}) do
-    conn
-    |> render("new_user.html", conn: conn)
-  end
-
-  def determine_render(conn, _conditions) do
-    artists = conn
-    |> Server.SpotifyAPI.get_artists
-
-    render conn, "index.html", artists: artists
+  defp refresh_tokens(conn) do
+    case Spotify.Authentication.refresh(conn) do
+      {:ok, new_conn} -> new_conn
+      :unauthorized ->
+        conn
+        |> render("new_user.html")
+        |> halt()
+    end
   end
 end
