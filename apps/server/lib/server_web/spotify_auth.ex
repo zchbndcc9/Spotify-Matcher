@@ -21,7 +21,7 @@ defmodule SpotifyAPI.Auth.Plug do
       {:ok, new_conn} -> new_conn
       :unauthorized ->
         conn
-        |> Phoenix.Controller.render("new_user.html")
+        |> Plug.Conn.send_resp(400, "unauthorized")
         |> halt()
     end
   end
