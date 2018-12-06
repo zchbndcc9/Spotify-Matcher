@@ -26,9 +26,9 @@ defmodule ServerWeb.Router do
   scope "/api", ServerWeb do
     pipe_through :api
 
-    delete "/users/:id/playlist", SpotifyAPI.PlaylistController, :delete
-    post "/users/:id/playlist", SpotifyAPI.PlaylistController, :create
-    get "/users/:id/top-artists", SpotifyAPI.UserController, :index
-    get "/artists/:id/similar", SpotifyAPI.ArtistController, :get
+    delete "/playlists/:id", SpotifyAPI.PlaylistController, :delete
+    post "/playlists", SpotifyAPI.PlaylistController, :create
+    get "/top-artists", SpotifyAPI.UserController, :index
+    get "/artists/:id/similar", SpotifyAPI.ArtistController, :index
   end
 end
