@@ -8,7 +8,7 @@ defmodule ServerWeb.SpotifyAuthController do
 
   def authenticate(conn, params) do
     case Spotify.Authentication.authenticate(conn, params) do
-      {:ok, conn} -> redirect conn, to: "/"
+      {:ok, conn} -> conn |> Plug.Conn.send_resp(200, "authorized")
     end
   end
 end
