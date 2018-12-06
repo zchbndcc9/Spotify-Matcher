@@ -1,1 +1,0 @@
-<%= link "Authorize", to: "#{spotify_auth_path(@conn, :authorize)}", class: "btn btn-primary" %>
