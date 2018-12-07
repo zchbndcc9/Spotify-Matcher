@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { ArtistList } from '../components/artist-list';
 
 export class Home extends React.Component {
   constructor(props) {
@@ -12,7 +13,12 @@ export class Home extends React.Component {
 
     })
   }
- 
+
+  pickArtist(id) {
+    axios.get(`http://localhost:4000/artist/${id}/similar`).then(response => {
+      // Swap artist and add to picked artists
+    })
+  }
   authorizeApp() {
     axios.get("http://localhost:4000/authorize").then({status, data}=> {
       if(status === 500) {
@@ -24,9 +30,8 @@ export class Home extends React.Component {
   }
 
   render() {
-    let pageView = <Home/>;
-    if(!authenticated) pageView = <Login/>
-
-    render(pageView)
+    return(
+      <ArtistList artists={this.state.artists} pickArtist={(id) => this.pickArtist(id)}
+    )
   }
 }
