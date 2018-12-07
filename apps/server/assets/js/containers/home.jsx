@@ -23,7 +23,7 @@ export class Home extends React.Component {
   
         this.setState((prevState) => ({
           artists: [
-            prevStateartists.splice(0, artistIndex),
+            prevState.artists.splice(0, artistIndex),
             artist,
             prevState.artists.splice(artistIndex + 1)
           ],
@@ -35,7 +35,7 @@ export class Home extends React.Component {
 
   render() {
     return(
-      <ArtistList artists={this.state.artists} pickArtist={(id) => this.pickArtist(id)}
+      <ArtistList artists={this.state.artists} pickArtist={(id) => this.pickArtist(id)} />
     )
   }
 }
