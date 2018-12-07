@@ -1,7 +1,7 @@
 defmodule ServerWeb.PageController do
   use ServerWeb, :controller
 
-  def index(conn, _params) do
+  def index(conn, params) do
     render(conn, "app.html")
   end
 end
