@@ -5,7 +5,7 @@ import { ArtistList } from '../components/artist-list';
 export class Home extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { authenticated: false,  }
+    this.state = { }
   }
 
   componentDidMount() {
@@ -17,15 +17,6 @@ export class Home extends React.Component {
   pickArtist(id) {
     axios.get(`http://localhost:4000/artist/${id}/similar`).then(response => {
       // Swap artist and add to picked artists
-    })
-  }
-  authorizeApp() {
-    axios.get("http://localhost:4000/authorize").then({status, data}=> {
-      if(status === 500) {
-        alert("Oops server error sorry")
-      } else {
-
-      }
     })
   }
 
