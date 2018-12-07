@@ -7,7 +7,6 @@ defmodule ServerWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug SpotifyAPI.Auth.Plug
   end
 
   pipeline :api do
@@ -26,9 +25,9 @@ defmodule ServerWeb.Router do
   scope "/api", ServerWeb do
     pipe_through :api
 
-    delete "/playlists/:id", SpotifyAPI.PlaylistController, :delete
-    post "/playlists", SpotifyAPI.PlaylistController, :create
-    get "/top-artists", SpotifyAPI.UserController, :index
-    get "/artists/:id/similar", SpotifyAPI.ArtistController, :index
+    delete "/playlists/:id", PlaylistController, :delete
+    post "/playlists", PlaylistController, :create
+    get "/top-artists", UserController, :index
+    get "/artists/:id/similar", ArtistController, :similar
   end
 end

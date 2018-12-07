@@ -9,9 +9,9 @@ defmodule ServerWeb.ArtistsView do
 
   def artist_json(artist) do
     %{
-      id: artist.user_id,
+      id: artist.id,
       name: artist.name,
-      img: artist.img
+      img: artist.images |> List.first()
     }
   end
 end
