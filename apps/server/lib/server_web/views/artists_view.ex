@@ -1,9 +1,15 @@
 defmodule ServerWeb.ArtistsView do
   use ServerWeb, :view
 
-  def render("index.json", %{"arists" => artists}) do
+  def render("index.json", %{"artists" => artists}) do
     %{
       artists: Enum.map(artists, &artist_json/1)
+    }
+  end
+
+  def render("show.json", %{"artist" => artist}) do
+    %{
+      artist: artist |> artist_json()
     }
   end
 
