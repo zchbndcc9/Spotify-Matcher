@@ -5,7 +5,7 @@ import { ArtistList } from '../components/artist-list';
 export class Home extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { }
+    this.state = { artists: [], pickedArtists: []}
   }
 
   componentDidMount() {
@@ -15,8 +15,21 @@ export class Home extends React.Component {
   }
 
   pickArtist(id) {
-    axios.get(`http://localhost:4000/artist/${id}/similar`).then(response => {
-      // Swap artist and add to picked artists
+    axios.get(`http://localhost:4000/artist/${id}/similar`).then({status, artist} => {
+      if(response.status === 200) {
+        // Swap artist and add to picked artists
+        const artistIndex = this.state.artists.findIndex(artist => artist.id === id)
+        const pickedArtist = this.state.artists[artistIndex]
+  
+        this.setState((prevState) => ({
+          artists: [
+            prevStateartists.splice(0, artistIndex),
+            artist,
+            prevState.artists.splice(artistIndex + 1)
+          ],
+          pickedArtists: [...pickedArtists, pickedArtist]
+        }))
+      }
     })
   }
 
