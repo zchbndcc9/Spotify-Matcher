@@ -11,9 +11,11 @@ const cardImg = {
   height: "3em"
 }
 
-export const Artist = (artist: {name, id, img}, pickArtist) => (
-  <div class="card" style={card} onClick={() => pickArtist(id)}>
+const Artist = ({artist: {name, id, img}, pickArtist}) => (
+  <div className="card" style={card} onClick={() => pickArtist(id)}>
     <img src={img.url} alt={img.url} style={cardImg}/>
     <h6>{name}</h6>
   </div>
 )
+
+export default Artist

@@ -1,10 +1,12 @@
 import React from 'react'
-import { Artist } from './artist';
+import Artist from './artist';
 
-export const ArtistList = ({artists, pickArtist}) => {
-  const artistList = artists.map(artist => <Artist artist={artist} pickArtist={(id) => pickArtist(id)/>)
+const ArtistList = ({artists, pickArtist}) => {
+  const artistList = artists.map(artist => <Artist key={artist.id} artist={artist} pickArtist={(id) => pickArtist(id)}/>)
 
   return (
-    <div>{artistList}</div>
+    <div className="card-columns">{artistList}</div>
   )
 }
+
+export default ArtistList

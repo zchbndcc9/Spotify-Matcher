@@ -1,33 +1,38 @@
 import React from 'react'
 import axios from 'axios'
-import { ArtistList } from '../components/artist-list';
+import ArtistList from '../components/artist-list';
 
-export class Home extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = { artists: [], pickedArtists: []}
   }
 
   componentDidMount() {
-    axios.get("http://localhost:4000").then(result => {
-
+    axios.get("http://localhost:4000/api/top-artists").then(({status, data: {artists}}) => {
+      if(status === 200) {
+        this.setState((prevState) => ({
+          artists: artists
+        }))
+      }
     })
   }
 
   pickArtist(id) {
-    axios.get(`http://localhost:4000/artist/${id}/similar`).then({status, artist} => {
-      if(response.status === 200) {
+    axios.get(`http://localhost:4000/api/artists/${id}/similar`).then(({status, data: {artist}}) => {
+      if(status === 200) {
         // Swap artist and add to picked artists
         const artistIndex = this.state.artists.findIndex(artist => artist.id === id)
         const pickedArtist = this.state.artists[artistIndex]
   
+        console.log(pickedArtist);
         this.setState((prevState) => ({
           artists: [
-            prevState.artists.splice(0, artistIndex),
+            ...prevState.artists.slice(0, artistIndex),
             artist,
-            prevState.artists.splice(artistIndex + 1)
+            ...prevState.artists.slice(artistIndex + 1)
           ],
-          pickedArtists: [...pickedArtists, pickedArtist]
+          pickedArtists: [...prevState.pickedArtists, pickedArtist]
         }))
       }
     })
@@ -39,3 +44,5 @@ export class Home extends React.Component {
     )
   }
 }
+
+export default Home
