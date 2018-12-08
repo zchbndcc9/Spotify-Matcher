@@ -17,7 +17,7 @@ defmodule ArtistLibrary.Library do
 
   @spec update_similar_artists(String, list(String)) :: :ok
   def update_similar_artists(artist, similar_artists) do
-    GenServer.cast(@me, {:update_similar_artists, artist, similar_artists})
+    GenServer.call(@me, {:update_similar_artists, artist, similar_artists})
   end
 
   @spec get_similar_artists(String) :: list(String)

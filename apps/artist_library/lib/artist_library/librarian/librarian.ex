@@ -1,7 +1,7 @@
 defmodule ArtistLibrary.Librarian do
 
   def start_link(_) do
-    
+
   end
 
   def checkin_artist(artist) do
@@ -12,7 +12,8 @@ defmodule ArtistLibrary.Librarian do
 
   def checkout_sim_artists(artist) do
     artist
-    |> ArtistLibrary.Library.get_similar_artists
+    |> Library.add_and_get()
+    |> Library.update_similar_artists(similar_artists)
   end
 
   def checkout_sim_artist(artist) do
@@ -21,33 +22,17 @@ defmodule ArtistLibrary.Librarian do
     |> Enum.random
   end
 
-  def exchange_artist(artist) do
-    artist
-    |> checkin_artist()
-    |> checkout_sim_artist()
+  def checkout_sim_artists(artist) do
+    case Library.get_similar_artists(artist) do
+      nil     -> {:no_stock}
+      artists -> {:ok, artists}
+    end
   end
 
-  defp update_library(true, artist) do
-    artist
-  end
-
-  defp update_library(false, artist) do
-    artist
-    |> ArtistLibrary.Library.add_and_get()
-    |> order_similar_artists()
-    |> await_delivery()
-    |> stock_shelves()
-  end
-
-  defp await_delivery(artist) do
-    artist
-  end
-
-  defp order_similar_artists(artist) do
-    artist
-  end
-
-  defp stock_shelves(artist) do
-    artist
+  def checkout_sim_artist(artist) do
+    case Library.get_similar_artists(artist) do
+      nil     -> {:no_stock}
+      artists -> {:ok, Enum.random(artists)}
+    end
   end
 end

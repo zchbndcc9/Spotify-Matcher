@@ -11,7 +11,7 @@ defmodule ArtistLibrary.Library.Server do
   end
 
   def handle_cast({:update_similar_artists, artist, similar_artists}, artists) do
-    {:noreply, Impl.update_similar_artists(artist, similar_artists, artists)}
+    {:reply, similar_artists, Impl.update_similar_artists(artist, similar_artists, artists)}
   end
 
   def handle_call({:add_and_get, new_artist}, _from, artists) do
