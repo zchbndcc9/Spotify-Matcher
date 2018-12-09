@@ -6,6 +6,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = { artists: [], pickedArtists: []}
+    this.createPlaylist = this.createPlaylist.bind(this)
   }
 
   componentDidMount() {
@@ -37,6 +38,10 @@ class Home extends React.Component {
       }
     })
   }
+  
+  createPlaylist(event) {
+    console.log(event)
+  }
 
   render() {
     const message = this.state.pickedArtists.length < 5 ? "Please pick at least 5 artists" : "Good to go!"
@@ -44,7 +49,7 @@ class Home extends React.Component {
       <div className="row">
         <h2>{message}</h2>
         <ArtistList artists={this.state.artists} pickArtist={(id) => this.pickArtist(id)} />
-        <form className="form">
+        <form className="form" onSubmit={this.createPlaylist}>
           <div className="form-group">
             <label htmlFor="title">Playlist Title</label>
             <input id="title" className="form-control" type="text" placeholder="My cool playlist" required/>
