@@ -16,7 +16,7 @@ defmodule ArtistManager.Store do
   defp via_tuple(user_id), do: {:via, Registry, {:store_registry, user_id}}
 
   def add_shown_artist(user_id, artist) do
-    GenServer.cast(via_tuple(user_id), {:add_shown_artist, artist})
+    GenServer.call(via_tuple(user_id), {:add_shown_artist, artist})
   end
   def get_store(user_id) do
     GenServer.call(via_tuple(user_id), :get_store)
@@ -35,7 +35,8 @@ defmodule ArtistManager.Store do
     {:reply, new_store, new_store}
   end
 
-  def handle_cast({:add_shown_artist, artist}, store) do
-    {:noreply, Impl.add_shown_artist(store, artist)}
+  def handle_call({:add_shown_artist, artist}, _from, store) do
+    new_store = store |> Impl.add_shown_artist(artist)
+    {:reply, new_store, new_store}
   end
 end
