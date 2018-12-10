@@ -8,7 +8,7 @@ class Home extends React.Component {
     this.state = { 
       artists: [], 
       pickedArtists: [],
-      song_limit: 10,
+      songLimit: 10,
       title: ""
     }
     this.createPlaylist = this.createPlaylist.bind(this)
@@ -51,10 +51,11 @@ class Home extends React.Component {
     data = {
       picked_artists: this.state.pickedArtists,
       title: this.state.title,
-      song_limit: this.state.songLimit
+      song_limit: +this.state.songLimit
     }
 
-    axios.post('localhost:4000/playlists', data).then(response => {
+    console.log(data)
+    axios.post('http://localhost:4000/api/playlists', data).then(response => {
       console.log(response.data)
     })
   }
