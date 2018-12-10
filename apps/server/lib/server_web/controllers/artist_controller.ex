@@ -25,6 +25,8 @@ defmodule ServerWeb.ArtistController do
     |> render(ServerWeb.ArtistsView, "show.json", %{"artist" => recommended_artist})
   end
 
+  # Utilizes MapSets in order to filter out artists from related artists that
+  # have already been picked/shown to user
   defp get_unique_recs(related_artists, artists_showing, picked_artists) do
     related_artists
     |> MapSet.new
