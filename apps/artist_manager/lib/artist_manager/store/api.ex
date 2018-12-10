@@ -12,12 +12,9 @@ defmodule ArtistManager.Store do
     {:ok, %Impl{}}
   end
 
-  @doc """
-  Taken from https://github.com/amokan/registry_sample/blob/master/lib/registry_sample/account.ex
-
-  Allows a GenServer pid to be stored in the registry that can be referenced
-  by a user's id
-  """
+  # Taken from https://github.com/amokan/registry_sample/blob/master/lib/registry_sample/account.ex
+  # Allows a GenServer pid to be stored in the registry that can be referenced
+  # by a user's id
   defp via_tuple(user_id), do: {:via, Registry, {:store_registry, user_id}}
 
   @doc """
