@@ -5,7 +5,7 @@ const ArtistList = ({artists, pickArtist}) => {
   const artistList = artists.map(artist => <Artist key={artist.id} artist={artist} pickArtist={(id) => pickArtist(id)}/>)
 
   return (
-    <div className="card-columns">{artistList}</div>
+    <div className="container card-columns">{artistList}</div>
   )
 }
 
