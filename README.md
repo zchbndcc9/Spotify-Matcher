@@ -16,3 +16,9 @@ For this application, I wanted to focus on improving the following skills:
 2. Navigate to http://localhost:4000/authorize in order to authorize the application to access your spotify
 
 3. Navigate to http://localhost:4000 and have fun creating your playlist!
+
+**Warning**
+Due to the limitations of the Spotify API. Some playlist creation processes may not 
+be successfully fulfilled so I call the add songs function recursively until it
+is successful. That being said, some requests may take longer than others. There 
+will be a fix for this in the near future
