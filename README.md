@@ -18,7 +18,7 @@ For this application, I wanted to focus on improving the following skills:
 3. Navigate to http://localhost:4000 and have fun creating your playlist!
 
 **Warning**
-Due to the limitations of the Spotify API. Some playlist creation processes may not 
-be successfully fulfilled so I call the add songs function recursively until it
+Due to the limitations of the Spotify API, some playlist creation processes may not 
+be successfully fulfilled in a timely manner. In order to combat this, I call the `add_songs` function recursively until it
 is successful. That being said, some requests may take longer than others. There 
 will be a fix for this in the near future
