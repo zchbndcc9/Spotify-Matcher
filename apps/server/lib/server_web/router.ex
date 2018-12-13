@@ -11,6 +11,7 @@ defmodule ServerWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug SpotifyAPI.Auth.Plug
   end
 
   scope "/", ServerWeb do
@@ -19,5 +20,14 @@ defmodule ServerWeb.Router do
     get "/", PageController, :index
     get "/authorize", SpotifyAuthController, :authorize
     get "/authenticate", SpotifyAuthController, :authenticate
+  end
+
+  scope "/api", ServerWeb do
+    pipe_through :api
+
+    delete "/playlists/:id", PlaylistController, :delete
+    post "/playlists", PlaylistController, :create
+    get "/top-artists", UserController, :index
+    get "/artists/:id/similar", ArtistController, :similar
   end
 end
